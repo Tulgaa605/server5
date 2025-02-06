@@ -1,13 +1,22 @@
 const multer = require("multer");
+const path = require("path");
+const fs = require("fs");
+
+// Хавтас үүсгэх (хэрэв байхгүй бол)
+const uploadDir = "./file";
+if (!fs.existsSync(uploadDir)) {
+  fs.mkdirSync(uploadDir, {recursive: true});
+}
+
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "file/"); // Path where files will be stored
+    cb(null, uploadDir); // Тохиромжтой зам
   },
   filename: (req, file, cb) => {
-    cb(null, Date.now() + "_" + file.originalname); // Unique file name
+    cb(null, Date.now() + path.extname(file.originalname)); // Дахин нэрлэх
   },
 });
 
-const upload = multer({storage: storage});
+const file = multer({storage: storage});
 
-module.exports = upload;
+module.exports = file;

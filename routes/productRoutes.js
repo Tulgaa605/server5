@@ -13,7 +13,7 @@ const router = express.Router();
 // Define the routes
 router.get("/products", getProducts);
 router.get("/products/:id", getProductById);
-router.post("/products", upload.single("file"), createProduct);
+router.post("/products", upload.array("file"), createProduct);
 router.put("/products/:id", updateProduct);
 router.delete("/products/:id", deleteProduct);
 

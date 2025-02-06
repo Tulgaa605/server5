@@ -1,2 +1,0 @@
--- AlterTable
-ALTER TABLE `product` MODIFY `color` VARCHAR(191) NOT NULL DEFAULT '#FFFFFF';
