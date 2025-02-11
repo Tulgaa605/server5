@@ -33,7 +33,6 @@ exports.loginUser = async (req, res) => {
   const {email, password} = req.body;
 
   try {
-    // Хэрэглэгчийн мэдээллийг шалгах
     const user = await prisma.user.findUnique({
       where: {
         email,
@@ -41,19 +40,15 @@ exports.loginUser = async (req, res) => {
     });
 
     if (!user) {
-      console.log("Хэрэглэгчийн мэдээлэл олдсонгүй: ", email); // Алдааг бүртгэх
+      console.log("Хэрэглэгчийн мэдээлэл олдсонгүй: ", email);
       return res.status(401).json({error: "Хэрэглэгч олдсонгүй!"});
     }
-
-    // Нууц үгийг шалгах
     const isPasswordValid = await bcrypt.compare(password, user.password);
 
     if (!isPasswordValid) {
-      console.log("Нууц үг буруу: ", email); // Алдааг бүртгэх
+      console.log("Нууц үг буруу: ", email);
       return res.status(401).json({error: "Нууц үг буруу!"});
     }
-
-    // JWT token үүсгэх
     const token = jwt.sign(
       {userId: user.id, email: user.email},
       process.env.JWT_SECRET,

@@ -8,7 +8,7 @@ const {
 
 const router = express.Router();
 
-router.get("/", getCategories);
+router.get("/categories", getCategories);
 router.get("/:id", getCategories);
 router.get("/:id/:name", getCategories);
 
