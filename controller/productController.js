@@ -78,7 +78,6 @@ const createProduct = async (req, res) => {
       }
     }
 
-    // Бүтээгдэхүүн амжилттай үүссэн гэж хариу илгээх
     res.status(201).json(product);
   } catch (error) {
     console.log(error);

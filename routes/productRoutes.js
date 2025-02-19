@@ -10,7 +10,6 @@ const upload = require("../middleware/multer");
 
 const router = express.Router();
 
-// Define the routes
 router.get("/products", getProducts);
 router.get("/products/:id", getProductById);
 router.post("/products", upload.array("file"), createProduct);
